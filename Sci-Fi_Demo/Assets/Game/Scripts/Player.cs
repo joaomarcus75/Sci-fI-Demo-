@@ -14,12 +14,19 @@ public class Player : MonoBehaviour
     void Start()
     {
         _controller = GetComponent<CharacterController>();
-        
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        
         CalculatedMovement();
     }
 
