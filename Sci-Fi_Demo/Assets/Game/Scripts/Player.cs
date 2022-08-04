@@ -11,16 +11,30 @@ public class Player : MonoBehaviour
     private float _gravity = 9.81f;
     private CharacterController _controller;
 
+   
+
     void Start()
     {
         _controller = GetComponent<CharacterController>();
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
+         if(Input.GetMouseButtonDown(0))
+        {
+            
+        Ray rayOrigin = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f,Screen.height /2f, 0));
+
+        if(Physics.Raycast(rayOrigin,Mathf.Infinity))
+        {
+            Debug.Log("Raycast Hit Someting");
+        }
+
+        }
+
         if(Input.GetKey(KeyCode.Escape))
         {
             Cursor.visible = true;
