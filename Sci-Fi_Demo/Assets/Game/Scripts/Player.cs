@@ -26,11 +26,11 @@ public class Player : MonoBehaviour
          if(Input.GetMouseButtonDown(0))
         {
             
-        Ray rayOrigin = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f,Screen.height /2f, 0));
+        Ray rayOrigin = Camera.main.ViewportPointToRay(new Vector3(0.5f,0.5f, 0));
 
-        if(Physics.Raycast(rayOrigin,Mathf.Infinity))
+        if(Physics.Raycast(rayOrigin,out RaycastHit hitInfo))
         {
-            Debug.Log("Raycast Hit Someting");
+            Debug.Log("Hit:" + hitInfo.transform.name);
         }
 
         }
