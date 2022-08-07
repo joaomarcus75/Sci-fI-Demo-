@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     private float _speed = 1.5f;
     private float _gravity = 9.81f;
     private CharacterController _controller;
+    [SerializeField]
+    private GameObject _muzzeFlash;
+
 
    
 
@@ -23,9 +26,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         if(Input.GetMouseButtonDown(0))
+         
+
+
+         if(Input.GetMouseButton(0))
         {
-            
+        //shoot effct
+        _muzzeFlash.SetActive(true);
+
         Ray rayOrigin = Camera.main.ViewportPointToRay(new Vector3(0.5f,0.5f, 0));
 
         if(Physics.Raycast(rayOrigin,out RaycastHit hitInfo))
@@ -33,7 +41,10 @@ public class Player : MonoBehaviour
             Debug.Log("Hit:" + hitInfo.transform.name);
         }
 
+        }else{
+            _muzzeFlash.SetActive(false);
         }
+        
 
         if(Input.GetKey(KeyCode.Escape))
         {
