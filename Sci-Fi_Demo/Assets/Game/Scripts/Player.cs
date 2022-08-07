@@ -10,8 +10,11 @@ public class Player : MonoBehaviour
     private float _speed = 1.5f;
     private float _gravity = 9.81f;
     private CharacterController _controller;
+    
     [SerializeField]
     private GameObject _muzzeFlash;
+    [SerializeField]
+    private GameObject _hitMarkerPrefab;
 
 
    
@@ -39,6 +42,7 @@ public class Player : MonoBehaviour
         if(Physics.Raycast(rayOrigin,out RaycastHit hitInfo))
         {
             Debug.Log("Hit:" + hitInfo.transform.name);
+            Instantiate(_hitMarkerPrefab,hitInfo.point,Quaternion.LookRotation(hitInfo.normal));
         }
 
         }else{
