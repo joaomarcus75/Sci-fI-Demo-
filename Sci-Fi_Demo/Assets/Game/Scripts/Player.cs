@@ -42,8 +42,12 @@ public class Player : MonoBehaviour
         if(Physics.Raycast(rayOrigin,out RaycastHit hitInfo))
         {
             Debug.Log("Hit:" + hitInfo.transform.name);
-            Instantiate(_hitMarkerPrefab,hitInfo.point,Quaternion.LookRotation(hitInfo.normal));
+            GameObject hitMarker = Instantiate(_hitMarkerPrefab,hitInfo.point,Quaternion.LookRotation(hitInfo.normal)) as GameObject; 
+            //this is a way to save a Instantiate method(prefab) into a GameObject variable 
+            Destroy(hitMarker,1f); //Destroy params --> (object,time to destroy)
+
         }
+            
 
         }else{
             _muzzeFlash.SetActive(false);
@@ -69,4 +73,6 @@ public class Player : MonoBehaviour
         velocity = transform.transform.TransformDirection(velocity);
         _controller.Move(velocity * Time.deltaTime);
     }
+
+   
 }
