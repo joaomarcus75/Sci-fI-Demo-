@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     private GameObject _muzzeFlash;
     [SerializeField]
     private GameObject _hitMarkerPrefab;
+    [SerializeField]
+    private AudioSource _weapomAudio; //private AudioSource _shootAudio;
 
 
    
@@ -36,6 +38,13 @@ public class Player : MonoBehaviour
         {
         //shoot effct
         _muzzeFlash.SetActive(true);
+        
+        if(_weapomAudio.isPlaying == false)
+        {
+
+        _weapomAudio.Play();
+        }
+        
 
         Ray rayOrigin = Camera.main.ViewportPointToRay(new Vector3(0.5f,0.5f, 0));
 
@@ -51,6 +60,7 @@ public class Player : MonoBehaviour
 
         }else{
             _muzzeFlash.SetActive(false);
+            _weapomAudio.Stop();
         }
         
 
