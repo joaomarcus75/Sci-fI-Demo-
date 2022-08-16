@@ -17,6 +17,10 @@ public class Player : MonoBehaviour
     private GameObject _hitMarkerPrefab;
     [SerializeField]
     private AudioSource _weapomAudio; //private AudioSource _shootAudio;
+    [SerializeField]
+    private int _currentAmmo;
+    private int _maxAmmo = 50;
+    private bool _isReloading = false;
 
 
    
@@ -26,6 +30,8 @@ public class Player : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        _currentAmmo = _maxAmmo;
+        
     }
 
     // Update is called once per frame
@@ -34,10 +40,44 @@ public class Player : MonoBehaviour
          
 
 
-         if(Input.GetMouseButton(0))
+         if(Input.GetMouseButton(0) & _currentAmmo > 0 )
         {
-        //shoot effct
+           shoot();
+        
+           }else{
+            _muzzeFlash.SetActive(false);
+            _weapomAudio.Stop();
+        }
+         if(Input.GetKey(KeyCode.Escape))
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        
+        CalculatedMovement();
+
+        if(Input.GetKey(KeyCode.R) && _isReloading == false)
+        {
+            _isReloading = true;
+            StartCoroutine(Reload());
+        }
+    }
+
+    void CalculatedMovement()
+    {
+            float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        Vector3 direction = new Vector3(horizontalInput,0,verticalInput);
+        Vector3 velocity = direction * _speed;
+        velocity.y -= _gravity;
+        velocity = transform.transform.TransformDirection(velocity);
+        _controller.Move(velocity * Time.deltaTime);
+    }
+    void shoot()
+    {
         _muzzeFlash.SetActive(true);
+        _currentAmmo --; 
+        
         
         if(_weapomAudio.isPlaying == false)
         {
@@ -56,32 +96,12 @@ public class Player : MonoBehaviour
             Destroy(hitMarker,1f); //Destroy params --> (object,time to destroy)
 
         }
-            
-
-        }else{
-            _muzzeFlash.SetActive(false);
-            _weapomAudio.Stop();
-        }
-        
-
-        if(Input.GetKey(KeyCode.Escape))
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
-        
-        CalculatedMovement();
     }
-
-    void CalculatedMovement()
+    IEnumerator Reload()
     {
-            float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        Vector3 direction = new Vector3(horizontalInput,0,verticalInput);
-        Vector3 velocity = direction * _speed;
-        velocity.y -= _gravity;
-        velocity = transform.transform.TransformDirection(velocity);
-        _controller.Move(velocity * Time.deltaTime);
+        yield return new WaitForSeconds(0.8f);
+        _currentAmmo = _maxAmmo;
+        _isReloading = false;
     }
 
    
