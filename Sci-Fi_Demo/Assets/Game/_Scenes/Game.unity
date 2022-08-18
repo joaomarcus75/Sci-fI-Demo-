@@ -1124,7 +1124,7 @@ GameObject:
   - component: {fileID: 915830252}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -1146,6 +1146,7 @@ MonoBehaviour:
   _hitMarkerPrefab: {fileID: 355072153}
   _weapomAudio: {fileID: 1519999750}
   _currentAmmo: 0
+  hasCoin: 0
 --- !u!23 &915830247
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4943,3 +4944,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: c74383c438ad9d14298fec8b36ce7ee5, type: 3}
+--- !u!114 &2134183074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134183069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd9617a89406a6f4b869783051e3e9c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coinPickUp: {fileID: 8300000, guid: 8b58dd752e4a81b47a0deb149a13157d, type: 3}
+--- !u!135 &2134183075
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134183069}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.60158366
+  m_Center: {x: 0, y: -0.52057725, z: -2.9241864e-16}

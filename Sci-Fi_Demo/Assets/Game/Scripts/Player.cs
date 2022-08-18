@@ -22,6 +22,11 @@ public class Player : MonoBehaviour
     private int _maxAmmo = 50;
     private bool _isReloading = false;
     private UIManager _uiManager;
+    public bool hasCoin = false;
+
+    
+    
+   
 
 
    
@@ -33,15 +38,14 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         _currentAmmo = _maxAmmo;
+       
+        
         
     }
 
     // Update is called once per frame
     void Update()
     {
-         
-
-
          if(Input.GetMouseButton(0) & _currentAmmo > 0 )
         {
            shoot();
@@ -63,6 +67,7 @@ public class Player : MonoBehaviour
             _isReloading = true;
             StartCoroutine(Reload());
         }
+        
     }
 
     void CalculatedMovement()
