@@ -23,12 +23,8 @@ public class Player : MonoBehaviour
     private bool _isReloading = false;
     private UIManager _uiManager;
     public bool hasCoin = false;
-
+    [SerializeField]
     
-    
-   
-
-
    
 
     void Start()
@@ -38,6 +34,7 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         _currentAmmo = _maxAmmo;
+        
        
         
         
