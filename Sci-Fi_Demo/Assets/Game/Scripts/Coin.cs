@@ -25,7 +25,7 @@ public class Coin : MonoBehaviour
                 uIManager.CollectedCoin();
             }
             Destroy(this.gameObject);
-             
+              
 
           }
         }

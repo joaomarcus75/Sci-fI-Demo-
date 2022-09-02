@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     private UIManager _uiManager;
     public bool hasCoin = false;
     [SerializeField]
+    private GameObject _weapon;
+    [SerializeField]
     
    
 
@@ -43,7 +45,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         if(Input.GetMouseButton(0) & _currentAmmo > 0 )
+         if(Input.GetMouseButton(0) & _currentAmmo > 0 & _weapon.activeSelf == true)
         {
            shoot();
         
@@ -79,9 +81,9 @@ public class Player : MonoBehaviour
     }
     void shoot()
     {
+        
         _muzzeFlash.SetActive(true);
         _currentAmmo --; 
-        
            if(_uiManager != null)
         {
             _uiManager.UpdateAmmo(_currentAmmo);
@@ -103,6 +105,8 @@ public class Player : MonoBehaviour
             GameObject hitMarker = Instantiate(_hitMarkerPrefab,hitInfo.point,Quaternion.LookRotation(hitInfo.normal)) as GameObject; 
             //this is a way to save a Instantiate method(prefab) into a GameObject variable 
             Destroy(hitMarker,1f); //Destroy params --> (object,time to destroy)
+            
+            
 
         }
     }
@@ -115,6 +119,10 @@ public class Player : MonoBehaviour
             _uiManager.UpdateAmmo(_currentAmmo);
         }
         _isReloading = false;
+    }
+    public void EnableWeapons()
+    {
+        _weapon.SetActive(true);
     }
 
    

@@ -25,6 +25,7 @@ public class Shark : MonoBehaviour
                     }
                     AudioSource audio = GetComponent<AudioSource>();
                     audio.Play();
+                    player.EnableWeapons();
                 }
                 else
                 {
@@ -37,7 +38,7 @@ public class Shark : MonoBehaviour
     }
   }
       //play the win sound
-  //else Debug  Get out of here!
+  //else Debug  Get out of here! 
 
 
 
