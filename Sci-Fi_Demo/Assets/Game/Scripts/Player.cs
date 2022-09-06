@@ -106,7 +106,15 @@ public class Player : MonoBehaviour
             //this is a way to save a Instantiate method(prefab) into a GameObject variable 
             Destroy(hitMarker,1f); //Destroy params --> (object,time to destroy)
             
+            //CHECKIF WE HIT THE CRATE
             
+            Destructable crate = hitInfo.transform.GetComponent<Destructable>(); 
+            
+            if(crate != null)
+            {
+              crate.DestroyCrate();
+            //DESTRO CRATE METHOD
+            }
 
         }
     }

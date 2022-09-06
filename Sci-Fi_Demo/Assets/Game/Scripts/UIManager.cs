@@ -7,7 +7,6 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]
     private Text _ammoText;
-    
     [SerializeField]
     private GameObject _coin;
 
@@ -24,3 +23,4 @@ public class UIManager : MonoBehaviour
     _coin.SetActive(false);
    }
 }
+ 
